@@ -23,6 +23,9 @@ connectDB();
 // ── Express app ──────────────────────────────────────────────────────────────
 const app = express();
 
+// Trust reverse proxy (e.g. Render, Heroku) so req.ip is correct for rate limiting
+app.set('trust proxy', 1);
+
 // ── Middleware (order matters) ───────────────────────────────────────────────
 app.use(helmet());
 app.use(cors({ origin: '*' }));
